@@ -37,6 +37,32 @@ Before starting with the problem, I wanted to state what I am seeing and assumin
 
 Having these statements in mind, in this first part of the problem I will build the function that will return the array as a parsed `BinTreeNode`.
 
+### How to implement it?
+
+At first, I tried by hand the parsing from the array to the object like class, so I made the algorithm step by step:
+
+- If array has one element:
+  - Return the element in BinTreeNode(id: element, left: null, right: null)
+
+- If array has 2 elements:
+  - If second element (left) is null:
+    - Return the element in BinTreeNode(id: element, left: null, right: null)
+  
+  - If left is not null:
+    - Return the element in BinTreeNode(id: element, left: parse function(left), right: null)
+
+- If array has 3 elements:
+  - If second (left) and third element (right) are null:
+    - Return the element in BinTreeNode(id: element, left: null, right: null)
+  - If left is null and right is not null:
+    - Return the element in BinTreeNode(id: element, left: null, right: parse function(right))
+  - If left is not null and right is null:
+    - Return the element in BinTreeNode(id: element, left: parse function(left), right: null)
+  - If left and right are not null:
+    - Return the element in BinTreeNode(id: element, left: parse function(left), right: parse function (right))
+
+After having the function, we need to convert the `BinTreeNode` to a JSON string.
+
 
 # Original README
 
