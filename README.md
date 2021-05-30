@@ -1,3 +1,45 @@
+# Thinking and more thinking....
+
+## Problem 1
+
+As far as I understood, I need to parse an array into a BinNodeTree. In the sample app, the `BinNodeTree` is a class, so I'll handle it that way for this problem.
+
+The input would look something like:
+```
+["a", ["b"], ["c"]]
+```
+
+The expected output would look like this:
+```
+{
+  "id": "a",
+  "left": {
+    "id": "b",
+    "left": null,
+    "right": null
+  },
+  "right": {
+    "id": "c",
+    "left": null,
+    "right": null
+  }
+}
+```
+Before starting with the problem, I wanted to state what I am seeing and assuming for this problem:
+
+- The input array will always have 1 to 3 elements.
+- The first element will be either a number or a string.
+- The second element will be an array whose content will have the same structure as what I am describing here, or a null value.
+- The third element will be of the same type as the second element: either an array or a null value.
+- If the array has a length of 1, the node won't have any children.
+- If the array has a length of 2, the node could have a left child.
+- If the array has a length of 3, the node could have a left child and / or a right child.
+
+Having these statements in mind, in this first part of the problem I will build the function that will return the array as a parsed `BinTreeNode`.
+
+
+# Original README
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
