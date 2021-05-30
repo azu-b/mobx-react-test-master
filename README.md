@@ -61,7 +61,20 @@ At first, I tried by hand the parsing from the array to the object like class, s
   - If left and right are not null:
     - Return the element in BinTreeNode(id: element, left: parse function(left), right: parse function (right))
 
-After having the function, we need to convert the `BinTreeNode` to a JSON string.
+After having the function, we need to take our function to the `TreeInput` component, which will be the one processing the array input.
+
+## Problem 2
+
+As I read in the description of the second problem, I need to accomplish the following:
+
+- Make the app have somewhere in which the user will select the JSON file with the array and extract it.
+- Pass the array from the source using the recently created `parseArrayToTree` function and show it inside the multiline text box we have right now in the app as a JSON text.
+- Our JSON text will be the base to build the graphic representation of the binary tree, which will be shown in the lower part of the app.
+- After having parsed the source file, the user will be able to modify the JSON text that came as a result from parsing the array into a tree and will live inside the multiline text box.
+- While our user modifies the JSON text, the graphic representation should not change until the JSON text is valid. In the meantime, there should be a parsing error message that will tell our user the JSON text is not valid.
+- After the used modifies the JSON text as a valid one, the graphic representation of the binary tree should change using this new JSON text.
+
+Now that I have stated how I understood the user requirements, I will start this problem by making the component that will source the JSON file that contains an array.
 
 
 # Original README
