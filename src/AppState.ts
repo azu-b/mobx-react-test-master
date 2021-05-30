@@ -12,6 +12,8 @@ export class AppState implements IAppState {
 
     @observable treeNode = new BinTreeNode("root", null, null);
 
+    @observable arrayFormatString: string = "";
+
     constructor() {
         makeObservable(this)
     }
@@ -20,6 +22,7 @@ export class AppState implements IAppState {
         this.title = newState.title;
         this.bodyMessage = newState.bodyMessage;
         this.treeNode = newState.treeNode
+        this.arrayFormatString = newState.arrayFormatString;
     }
 }
 

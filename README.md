@@ -76,6 +76,10 @@ As I read in the description of the second problem, I need to accomplish the fol
 
 Now that I have stated how I understood the user requirements, I will start this problem by making the component that will source the JSON file that contains an array. For this component, I added the `react-files` library, to be able to upload the JSON file with the array. Then I used a `FileReader` to read the file as text, then parse it as an array.
 
+After completing the task of uploading my JSON file with the array I get to an interesting problem. This project is the first one in which I use MobX, so I have been learning how to use based on some reading and how it is being used in this sample app I have been modifying. In fact, in the past I didn't use any state management library: I depended on having components with the changing stuff using React's Context Provider and Consumer.
+
+I used the IAppState and added a new property called arrayFormatString, which is modified in the `TreeSource` component as it gets the string from the uploaded JSON file. Then, I used it in `TreeInput` to parse the string as a JSON, get the array and parse it to be a `BinTreeNode`. After that, I set the `treeText` property of `TreeInput` state using `JSON.stringify` and passed it through the `value` prop of the `textarea`. The next thing to do is to parse the `TreeInput` text to an object when the user changes it and show them if they have syntax errors.
+
 
 # Original README
 

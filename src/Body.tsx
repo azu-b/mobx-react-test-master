@@ -15,12 +15,15 @@ const BodyRenderer: React.FunctionComponent<BodyProps> = observer((props) => {
         <main className="App-body">
             {props.appState!.bodyMessage}
             <TreeSource />
-            <TreeInput onChange={(newVal) => {
-                props.appState.setState({
-                    ...props.appState,
-                    treeNode: newVal
-                })
-            }} />
+            <TreeInput
+                onChange={(newVal) => {
+                    props.appState.setState({
+                        ...props.appState,
+                        treeNode: newVal
+                    })
+                }}
+                appState={props.appState}
+            />
             <div className="OutputContainer">
                 <TreeOutput treeNode={props.appState.treeNode} />
             </div>

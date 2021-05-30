@@ -1,8 +1,11 @@
-import React from 'react';
-import Files from 'react-files';
+import React from "react";
+import Files from "react-files";
+import { observer } from "mobx-react";
+import { IAppState } from "./IAppState";
+import { useAppStateContext } from "./AppState";
 
-interface TreeSourceState {
-    jsonFile: {}
+interface TreeSourceProps {
+    appState: IAppState;
 }
 
 interface FileError {
@@ -10,48 +13,46 @@ interface FileError {
     message: string;
 }
 
-export class TreeSource extends React.Component<{}, TreeSourceState> {
-    fileReader: FileReader;
+const TreeSourceRenderer: React.FunctionComponent<TreeSourceProps> = observer((props) => {
+    const fileReader = new FileReader();
 
-    constructor(props: any) {
-        super(props);
-        this.state = {
-            jsonFile: {}
+    fileReader.onload = (event: any) => {
+        const parsedFile = event!.target!.result;
+        if (parsedFile) {
+            props.appState.setState({
+                ...props.appState,
+                arrayFormatString: parsedFile,
+            });
         }
+    };
 
-        this.fileReader = new FileReader();
+    const onFilesError = (error: FileError, _file: File) => {
+        console.log(`error code ${error.code}: ${error.message}`);
+    };
 
-        this.fileReader.onload = (event: any) => {
-            const parsedFile = event!.target!.result;
-            if (parsedFile) {
-                const fileAsJSON = JSON.parse(parsedFile);
-                this.setState({
-                    jsonFile: fileAsJSON,
-                }, () => console.log(this.state.jsonFile))
+    return (
+        <div>
+            <Files
+                className="files-dropzone"
+                onChange={(file: File[]) => fileReader.readAsText(file[0])}
+                onError={onFilesError}
+                accepts={[".json"]}
+                maxFileSize={1000000}
+                minFileSize={0}
+                clickable
+            >
+                <button>Choose JSON file with the array</button>
+            </Files>
+            {props.appState.arrayFormatString !== ""
+                ? <p>Array: {props.appState.arrayFormatString}</p>
+                : <p>No JSON file uploaded yet</p>
             }
-
-        };
-    }
-
-    onFilesError = (error: FileError, _file: File) => {
-        console.log(`error code ${error.code}: ${error.message}`)
-    }
-
-    render() {
-        return (
-            <div>
-                <Files
-                    className="files-dropzone"
-                    onChange={(file: File[]) => this.fileReader.readAsText(file[0])}
-                    onError={this.onFilesError}
-                    accepts={['.json']}
-                    maxFileSize={1000000}
-                    minFileSize={0}
-                    clickable
-                >
-                    <button>Choose JSON file with the array</button>
-                </Files>
-            </div>
-        );
-    }
+        </div>
+    );
 }
+);
+
+export const TreeSource: React.FunctionComponent<{}> = (_props) => {
+    const appState = useAppStateContext();
+    return <TreeSourceRenderer appState={appState} />
+};

@@ -1,8 +1,10 @@
 import * as React from "react";
 import { BinTreeNode } from "./TreeNode";
+import { IAppState } from "./IAppState";
 
 export interface TreeInputProps {
     onChange: (newTreeNode: BinTreeNode) => void
+    appState: IAppState;
 }
 interface TreeInputState {
     treeText: string
@@ -61,21 +63,27 @@ export class TreeInput extends React.Component<TreeInputProps, TreeInputState>{
     }
 
     convert = () => {
-        // After you implement parseArrayToTree above, uncomment the below code
-        let treeArrayFormat: BinTreeArray = JSON.parse(this.state.treeText);
+        const treeArrayFormat = JSON.parse(this.props.appState.arrayFormatString);
         this.props.onChange(this.parseArrayToTree(treeArrayFormat));
-    }
+        this.setState({
+            treeText: JSON.stringify(this.props.appState.treeNode, null, 3)
+        })
+    };
 
     render() {
-
         return (
             <div>
                 <button onClick={this.convert}>Process</button><br />
-                <textarea rows={5} cols={120} onChange={(ev) => {
-                    this.setState({
-                        treeText: ev.target.value
-                    })
-                }}></textarea>
+                <textarea
+                    rows={20}
+                    cols={120}
+                    onChange={(ev) => {
+                        this.setState({
+                            treeText: ev.target.value
+                        })
+                    }}
+                    value={this.state.treeText}
+                />
             </div>
         )
     }
