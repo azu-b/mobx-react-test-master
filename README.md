@@ -74,7 +74,7 @@ As I read in the description of the second problem, I need to accomplish the fol
 - While our user modifies the JSON text, the graphic representation should not change until the JSON text is valid. In the meantime, there should be a parsing error message that will tell our user the JSON text is not valid.
 - After the used modifies the JSON text as a valid one, the graphic representation of the binary tree should change using this new JSON text.
 
-Now that I have stated how I understood the user requirements, I will start this problem by making the component that will source the JSON file that contains an array.
+Now that I have stated how I understood the user requirements, I will start this problem by making the component that will source the JSON file that contains an array. For this component, I added the `react-files` library, to be able to upload the JSON file with the array. Then I used a `FileReader` to read the file as text, then parse it as an array.
 
 
 # Original README

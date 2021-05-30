@@ -64,14 +64,9 @@ export class TreeInput extends React.Component<TreeInputProps, TreeInputState>{
         // After you implement parseArrayToTree above, uncomment the below code
         let treeArrayFormat: BinTreeArray = JSON.parse(this.state.treeText);
         this.props.onChange(this.parseArrayToTree(treeArrayFormat));
-
-        // After you implement parseArrayToTree above, comment the below code
-        // let treeNodeFormat: BinTreeNode = JSON.parse(this.state.treeText);
-        // this.props.onChange(treeNodeFormat);
     }
 
     render() {
-        console.log(this.parseArrayToTree(["a", ["b", ["b1"], ["b2", ["b21"], ["b22"]]], ["c", ["c1", ["c11", ["c111"]], ["c12", null, ["c121"]]], ["c2", null, ["c21"]]]]));
 
         return (
             <div>
