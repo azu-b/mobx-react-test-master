@@ -86,8 +86,15 @@ For showing error messages, I built an `ErrorMessage` component, which is used i
 
 Due to time constraint, I didn't implement parsing the valid JSON to see if it has the correct structure for being a binary tree. As it is, as long as it is valid JSON with ids properties being a number or a string, the app will work as expected. A possible approach to solve this problem could be to implement a method that will check the structure of the object parsed from the JSON text edited by the user. This method would check how many properties the object has and see if it has an id that is a number or a string, a "left" property that is either null of an object and then we could use recursion to call the same method with "left" property value. The same would be done with the "right" property.
 
+## Problem 3
 
-# Original README
+After reading the problem, I understood that I need to find the smallest subtree from our shown binary tree which contains the deepest nodes. And what is that? Here are my assumptions and understandings.
+- A one node tree. If the root node has no children, then we should return the root node.
+- A node whose children are leaf nodes and the depth from the root to these children is the largest one from all the tree.
+- A node that has more than two grandchildren and they have equal depth from the root to these grandchildren and this depth is the largest of all the tree.
+
+Having these statements in my mind, I want to try to solve this problem by calculating the depth of their left and right children and so on.
+# Part of original README
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -102,34 +109,3 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
