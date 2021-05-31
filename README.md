@@ -139,7 +139,16 @@ After finishing the function to get the smallest subtree, the next step is to hi
 
 A `@computed` property is a get function that returns something that is calculated with other state properties. In our case, there was a dependency on the tree node. Since we wanted to hightlight the smallest deepest binary tree and our function to get that subtree node uses a tree node, I added a `@computed` getter for this smallest deepest binary tree to the `AppState`, which I passed through the `Body` component, who sends it to the `TreeOutput` component.
 
-When `TreeOutput`receives it as a property, it can determine whether if the current node is the same as the one from the smallest deepest subtree. I compared both ids, and if they were the same, an `id` property would be assigned to the outer `<div>` with `treeNode` className. Then, in the `TreeOutput` style file, I created a CSS rule for this id: `#smallestBinTree`. With this rule, the smallest deepest binary tree is rendered with a 2px-solid green border. 
+When `TreeOutput`receives it as a property, it can determine whether if the current node is the same as the one from the smallest deepest subtree. I compared both ids, and if they were the same, an `id` property would be assigned to the outer `<div>` with `treeNode` className. Then, in the `TreeOutput` style file, I created a CSS rule for this id: `#smallestBinTree`. With this rule, the smallest deepest binary tree is rendered with a 2px-solid green border.
+
+## Ideas I wanted to implement
+
+Due to time constraint, I wasn't able to do more things to show you. But here I will talk about it:
+
+1. *Create unit tests for my functions*: I am no expert on this, but at least I would have liked to do some simple tests to check which kind of inputs would make my functions fail, or check if they do what I want them to do. I want more experience in these things to be able to plan and code them more easily than now.
+2. *Build a nice UI*: I would have liked to use Styled Components library to build the components and get inspiration (or even the library) from Materialize. Also, I would have liked to use CSS media queries to do the app responsive to screen sizes.
+3. *Parse valid JSON text*: As I mentioned in Problem 2, my app needs this to be able to determine if the JSON text has the `BinTreeNode` structure. That would avoid the app to crash when an `id` has a value different from a number or a string and it would help to always show the error message for the JSON text, because right now I can add to a JSON tree text a property `hello` with an `x` value and my error message wouldn't be there because it is a valid JSON.
+4. *Change folder structure*: I feel I left my files disorganized, so I would have liked to create a `components` folder to add the `Body`, `Header`, `TreeInput`, `TreeOutput`, `TreeSource` and `ErrorMessage`, a `state` folder to add `AppState` and `IAppState`, a `utils` folder to add `TreeNode` and the sample JSON files.
 
 
 # Part of original README
