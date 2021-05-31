@@ -10,7 +10,7 @@ export class BinTreeNode {
     }
 }
 
-export const calculateBinTreeDepth = (treeNode: BinTreeNode): number => {
+const calculateBinTreeDepth = (treeNode: BinTreeNode): number => {
     if (!treeNode.left && !treeNode.right) {
         return 0;
     } else if (treeNode.left && !treeNode.right) {

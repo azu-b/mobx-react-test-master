@@ -1,8 +1,8 @@
 import * as React from "react";
 import "./configureMobx";
-import { observable, action, makeObservable } from "mobx";
+import { observable, action, makeObservable, computed } from "mobx";
 import { IAppState } from "./IAppState";
-import { BinTreeNode } from "./TreeNode";
+import { BinTreeNode, getSmallestBinTreeNode } from "./TreeNode";
 import { createContext } from "react";
 
 export class AppState implements IAppState {
@@ -15,7 +15,7 @@ export class AppState implements IAppState {
     @observable arrayFormatString: string = "";
 
     constructor() {
-        makeObservable(this)
+        makeObservable(this);
     }
 
     @action setState(newState: IAppState) {
@@ -23,6 +23,10 @@ export class AppState implements IAppState {
         this.bodyMessage = newState.bodyMessage;
         this.treeNode = newState.treeNode
         this.arrayFormatString = newState.arrayFormatString;
+    }
+
+    @computed get smallestDeepestBinTreeNode() : BinTreeNode {
+        return getSmallestBinTreeNode(this.treeNode);
     }
 }
 

@@ -1,4 +1,5 @@
 import { IObservable, IObservableValue } from "mobx";
+import { BinTreeNode } from "./TreeNode";
 
 interface IAppState {
     title: string;
@@ -6,5 +7,6 @@ interface IAppState {
     treeNode: BinTreeNode;
     arrayFormatString: string;
     
-    setState(newState: IAppState)
+    setState(newState: IAppState);
+    smallestDeepestBinTreeNode: BinTreeNode;
 }

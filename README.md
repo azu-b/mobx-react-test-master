@@ -76,7 +76,7 @@ As I read in the description of the second problem, I need to accomplish the fol
 
 Now that I have stated how I understood the user requirements, I will start this problem by making the component that will source the JSON file that contains an array. For this component, I added the `react-files` library, to be able to upload the JSON file with the array. Then I used a `FileReader` to read the file as text, then parse it as an array.
 
-After completing the task of uploading my JSON file with the array I get to an interesting problem. This project is the first one in which I use MobX, so I have been learning how to use based on some reading and how it is being used in this sample app I have been modifying. In fact, in the past I didn't use any state management library: I depended on having components with the changing stuff using React's Context Provider and Consumer.
+After completing the task of uploading my JSON file with the array I get to an interesting problem. This project is the first one in which I use MobX, so I have been learning how to use based on some reading and how it is being used in this sample app I have been modifying. In fact, in the past I didn't use any state management library: I depended on having components with the changing stuff, and a few times using React's Context Provider and Consumer.
 
 I used the IAppState and added a new property called arrayFormatString, which is modified in the `TreeSource` component as it gets the string from the uploaded JSON file. Then, I used it in `TreeInput` to parse the string as a JSON, get the array and parse it to be a `BinTreeNode`. After that, I set the `treeText` property of `TreeInput` state using `JSON.stringify` and passed it through the `value` prop of the `textarea`.
 
@@ -135,7 +135,13 @@ After having implemented the function that gets the depth of a treeNode, the nex
   - If both left and right depth are equal:
     - Return given node
 
-After finishing the function to get the smallest subtree, the next step is to highlight this subtree in our visual output with a 2px-solid green border.
+After finishing the function to get the smallest subtree, the next step is to highlight this subtree in our visual output with a 2px-solid green border. For this goal, I read a little bit more about MobX because, before wanting to solve this problem, I saw there was a `@computed` property and I thought it could be useful for this.
+
+A `@computed` property is a get function that returns something that is calculated with other state properties. In our case, there was a dependency on the tree node. Since we wanted to hightlight the smallest deepest binary tree and our function to get that subtree node uses a tree node, I added a `@computed` getter for this smallest deepest binary tree to the `AppState`, which I passed through the `Body` component, who sends it to the `TreeOutput` component.
+
+When `TreeOutput`receives it as a property, it can determine whether if the current node is the same as the one from the smallest deepest subtree. I compared both ids, and if they were the same, an `id` property would be assigned to the outer `<div>` with `treeNode` className. Then, in the `TreeOutput` style file, I created a CSS rule for this id: `#smallestBinTree`. With this rule, the smallest deepest binary tree is rendered with a 2px-solid green border. 
+
+
 # Part of original README
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
