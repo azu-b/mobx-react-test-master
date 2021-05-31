@@ -27,7 +27,7 @@ const TreeSourceRenderer: React.FunctionComponent<TreeSourceProps> = observer((p
     };
 
     const onFilesError = (error: FileError, _file: File) => {
-        console.log(`error code ${error.code}: ${error.message}`);
+        console.log(`Error code ${error.code}: ${error.message}`);
     };
 
     return (
@@ -44,7 +44,7 @@ const TreeSourceRenderer: React.FunctionComponent<TreeSourceProps> = observer((p
                 <button>Choose JSON file with the array</button>
             </Files>
             {props.appState.arrayFormatString !== ""
-                ? <p>Array: {props.appState.arrayFormatString}</p>
+                ? <p>File content: {props.appState.arrayFormatString}</p>
                 : <p>No JSON file uploaded yet</p>
             }
         </div>

@@ -80,7 +80,11 @@ After completing the task of uploading my JSON file with the array I get to an i
 
 I used the IAppState and added a new property called arrayFormatString, which is modified in the `TreeSource` component as it gets the string from the uploaded JSON file. Then, I used it in `TreeInput` to parse the string as a JSON, get the array and parse it to be a `BinTreeNode`. After that, I set the `treeText` property of `TreeInput` state using `JSON.stringify` and passed it through the `value` prop of the `textarea`.
 
-Other important thing I had to do was to style the graphic representation of the binary tree in a more-or-less decent way. The next thing to do is to parse the `TreeInput` text to an object when the user changes it and show them if they have syntax errors.
+Other important thing I had to do was to style the graphic representation of the binary tree in a more-or-less decent way. The next thing to do is to parse the `TreeInput` text to an object when the user changes it and show them if they have syntax errors. To do this, I added some error flags and used some `try` and `catch` to decide whether if I should show error messages or not. If the user edits the text and it is a valid JSON that can be converted
+
+For showing error messages, I built an `ErrorMessage` component, which is used in two cases: when pressing `Process` button and there is no JSON file uploaded or the JSON file doesn't have a valid array, and when the user is editing the JSON inside the `TreeInput` multiline text-box and the content is not a valid JSON.
+
+Due to time constraint, I didn't implement parsing the valid JSON to see if it has the correct structure for being a binary tree. As it is, as long as it is valid JSON with ids properties being a number or a string, the app will work as expected. A possible approach to solve this problem could be to implement a method that will check the structure of the object parsed from the JSON text edited by the user. This method would check how many properties the object has and see if it has an id that is a number or a string, a "left" property that is either null of an object and then we could use recursion to call the same method with "left" property value. The same would be done with the "right" property.
 
 
 # Original README
