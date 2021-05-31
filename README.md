@@ -88,10 +88,12 @@ Due to time constraint, I didn't implement parsing the valid JSON to see if it h
 
 ## Problem 3
 
-After reading the problem, I understood that I need to find the smallest subtree from our shown binary tree which contains the deepest nodes. And what is that? Here are my assumptions and understandings.
+After reading the problem, I understood that I need to find the smallest subtree from our shown binary tree which contains the deepest nodes. And what is that? Here are my assumptions and understandings of that concept:
 - A one node tree. If the root node has no children, then we should return the root node.
 - A node whose children are leaf nodes and the depth from the root to these children is the largest one from all the tree.
-- A node that has more than two grandchildren and they have equal depth from the root to these grandchildren and this depth is the largest of all the tree.
+- A node with one child that is a leaf node and the depth from the root to this child is the largest one from all the tree.
+- A node that has more than two grandchildren and they have equal depth from the root to these grandchildren and that depth is the largest of all the tree.
+Besides talking about what is the smallest subtree we look for, I want to say that I am assuming our binary tree could be unbalanced, so our smallest subtree can be a node with one child.
 
 Having these statements in my mind, I wanted to try to solve this problem by calculating the depth of their left and right children and compare them to see if which of them has a greater depth.
 
@@ -108,7 +110,32 @@ Having these statements in my mind, I wanted to try to solve this problem by cal
   - Determine which is bigger
     - Return the bigger one
 
-After having implemented the function that gets the depth of a treeNode, the next step seemed to go through the binary tree and calculate the depth from both sides.
+After having implemented the function that gets the depth of a treeNode, the next step seemed to go through the binary tree and calculate the depth from both sides, see which one is bigger and keep calculating depths and comparing until both sides have the same depth. When this happens, we should have the smallest subtree with the deepest nodes.
+
+2. Get the smallest subtree with the deepest nodes:
+- When given node has no children:
+  - Return given node
+- When given node has left child but no right child:
+  - Calculate left depth
+  - If left depth is bigger than 1:
+    - Return function(left child)
+  - Return given node
+- When given node has right child but no left child:
+  - Calculate right depth
+  - If right depth is bigger than 1:
+    - Return function(right child)
+  - Return given node
+- When given node has both children:
+  - Calculate left depth
+  - Calculate right depth
+  - If left depth is greater than right depth:
+    - Return function(left child)
+  - If right depth is greater than left depth:
+    - Return function(right child)
+  - If both left and right depth are equal:
+    - Return given node
+
+After finishing the function to get the smallest subtree, the next step is to highlight this subtree in our visual output with a 2px-solid green border.
 # Part of original README
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
