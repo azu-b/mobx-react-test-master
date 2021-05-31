@@ -108,7 +108,6 @@ export class TreeInput extends React.Component<TreeInputProps, TreeInputState>{
         const changingText = ev.target.value;
 
         try {
-            console.log("Enter try");
             const binTreeNodeObject = JSON.parse(changingText);
             const newBinTreeNode = binTreeNodeObject;
             this.setState({
@@ -122,7 +121,6 @@ export class TreeInput extends React.Component<TreeInputProps, TreeInputState>{
                 treeNode: newBinTreeNode
             })
         } catch {
-            console.log("Enter catch");
             this.setState({
                 ...this.state,
                 hasJSONError: true,

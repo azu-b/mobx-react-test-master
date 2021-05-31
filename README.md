@@ -93,7 +93,22 @@ After reading the problem, I understood that I need to find the smallest subtree
 - A node whose children are leaf nodes and the depth from the root to these children is the largest one from all the tree.
 - A node that has more than two grandchildren and they have equal depth from the root to these grandchildren and this depth is the largest of all the tree.
 
-Having these statements in my mind, I want to try to solve this problem by calculating the depth of their left and right children and so on.
+Having these statements in my mind, I wanted to try to solve this problem by calculating the depth of their left and right children and compare them to see if which of them has a greater depth.
+
+1. Calculate the tree depth from a given node:
+- When given node has no children:
+  - Return 0
+- When given node has left child but no right child:
+  - Return function(left child) + 1
+- When given node has right child but no left child:
+  - Return function(right child) + 1
+- When given node has both left and right children:
+  - Run function(left child) + 1
+  - Run function(right child) + 1
+  - Determine which is bigger
+    - Return the bigger one
+
+After having implemented the function that gets the depth of a treeNode, the next step seemed to go through the binary tree and calculate the depth from both sides.
 # Part of original README
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

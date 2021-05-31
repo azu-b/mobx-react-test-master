@@ -8,8 +8,19 @@ export class BinTreeNode {
         this.left = left;
         this.right = right;
     }
+}
 
-    buildFromObject(obj: Object) {
-        obj && Object.assign(this, obj);
-    }
+export const calculateBinTreeDepth = (treeNode: BinTreeNode): number => {
+    if (!treeNode.left && !treeNode.right) {
+        return 1;
+    } else if (treeNode.left && !treeNode.right) {
+        return calculateBinTreeDepth(treeNode.left) + 1;
+    } else if (!treeNode.left && treeNode.right) {
+        return calculateBinTreeDepth(treeNode.right) + 1;
+    } else if (treeNode.left && treeNode.right) {
+        const leftDepth = calculateBinTreeDepth(treeNode.left) + 1;
+        const rightDepth = calculateBinTreeDepth(treeNode.right) + 1;
+        return Math.max(leftDepth, rightDepth);
+    };
+    return 0;
 }
