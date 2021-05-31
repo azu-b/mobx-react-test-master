@@ -1,14 +1,26 @@
-.treeNode{
-    // fill me in
+.treeNode {
+    width: fit-content;
+    border: 2px solid #FFDAAB;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2px;
 }
 
-.treeNode > .nodeId{
+.treeNode > .nodeId {
+    border: 2px solid #D9ABFF;
+    padding: 8px;
     font-weight: bold;
 }
-.treeNode > .nodeChildren{
-    //fill me in
+
+.treeNode > .nodeChildren {
+    border: 2px solid #ABE4FF;
+    display: flex;
+    padding: 2px;
 }
 
-.nodeChildren > .treeNode{
-    
+.nodeChildren > .treeNode {
+    border: 2px solid #FFABAB;
+    padding: 5px;
+    margin: 2px;
 }
